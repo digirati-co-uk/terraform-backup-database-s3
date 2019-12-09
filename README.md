@@ -25,6 +25,7 @@ The container that the module uses (`digirati/backup-database-s3` - see https://
 | account_id                      | AWS account ID                                                                                  |                                    |
 | cluster_id                      | The cluster on which to run the scheduled ECS task                                              |                                    |
 | cron_expression                 | Cron scheduling expression in form `cron(x x x x x x)`                                          |                                    |
+| host_folder                     | Folder on host to map into container as /tmp/backup                                             | /tmp                               |
 
 ## Example
 
@@ -48,6 +49,7 @@ module "backup_presley" {
   account_id                      = "${var.account_id}"
   cluster_id                      = "${module.metropolis_cluster.cluster_id}"
   cron_expression                 = "cron(0 0 * * ? *)"
+  host_folder                     = "/data-ebs/${var.prefix}-backup-presley"
 }
 
 ```

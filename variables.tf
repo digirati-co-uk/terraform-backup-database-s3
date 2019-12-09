@@ -20,3 +20,7 @@ variable "s3_bucket_name" {}
 variable "account_id" {}
 variable "cluster_id" {}
 variable "cron_expression" {}
+
+variable "host_folder" {
+  default = "/tmp"
+}

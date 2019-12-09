@@ -38,6 +38,10 @@ module "backup_task" {
       sourceVolume  = "${var.prefix}-backup-${var.backup_identifier}-docker"
       containerPath = "/var/run/docker.sock"
     },
+    {
+      sourceVolume  = "${var.prefix}-backup-${var.backup_identifier}-temp"
+      containerPath = "/tmp/backup"
+    },
   ]
 }
 
@@ -49,6 +53,11 @@ resource "aws_ecs_task_definition" "backup_task" {
   volume {
     name      = "${var.prefix}-backup-${var.backup_identifier}-docker"
     host_path = "/var/run/docker.sock"
+  }
+
+  volume {
+    name      = "${var.prefix}-backup-${var.backup_identifier}-temp"
+    host_path = "${var.host_folder}"
   }
 }
 
